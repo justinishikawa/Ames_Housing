@@ -110,13 +110,23 @@ pre_process<function(dataframe){
   dataframe$BsmtFinType1<-as.numeric(parse_factor(dataframe$BsmtFinType1, unique(dataframe$BsmtFinType1)))
   
   #BsmtFinSF1 rescale
-  dataframe$BsmtFinSF1<-scale(dataframe$BsmtFinSF1, center=TRUE, scale=TRUE)
+  #dataframe$BsmtFinSF1<-scale(dataframe$BsmtFinSF1, center=TRUE, scale=TRUE)
   
   #BsmtFinType2
   dataframe$BsmtFinType2<-as.numeric(parse_factor(dataframe$BsmtFinType2, unique(dataframe$BsmtFinType2)))
   
-  #BsmtFinSF1 rescale
-  dataframe$BsmtFinSF2<-scale(dataframe$BsmtFinSF2, center=TRUE, scale=TRUE)
+  #BsmtFinSF2 rescale
+  #dataframe$BsmtFinSF2<-scale(dataframe$BsmtFinSF2, center=TRUE, scale=TRUE)
+  
+  #Finished basement SF, unfinished and Total are all the rehashes of the same information.  I'm creating a new column that is finished ratio which is 
+  #SF1+SF2/Total rescaled of course
+  dataframe$FinishedRatio<-(dataframe$BsmtFinSF1+dataframes$BsmtFinSF2)/dataframe$TotalBsmtSF
+  dataframe$FinishedRatio<-scale(dataframe$FinishedRatio, center=TRUE, scale=TRUE)
+  
+  #Killing finished SF 1 & 2, BsmtUnfSF, and TotalBsmt
+  dataframe$BsmtFinSF1<-NULL; dataframe$BsmtFinSF2<-NULL; dataframe$BsmtFinSF2<-NULL; dataframe$BsmtUnfSF<-NULL; dataframe$TotalBsmtSF<-NULL
+  
+  #Heating
   
   
 
