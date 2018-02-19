@@ -3,7 +3,7 @@ suppressMessages(library(forcats))
 
 #opening file
 re<-read_csv('kaggle_data.csv',col_names = TRUE)
-pre_process<function(dataframe){
+pre_process<-function(dataframe){
   #Removing id variable as it doesnt have any information
   dataframe<-dataframe[,2:81]
   #MSSubClass-recoding this to categories as its not ordinal Not sure what to do here atm
@@ -27,7 +27,7 @@ pre_process<function(dataframe){
   dataframe$Alley<-NULL
   
   #Lotshape Dummy Coding
-  dataframe$Lotshape<-as.numeric(parse_factor(dataframe$Lotshape, unique(dataframe$Lotshape)))
+  dataframe$LotShape<-as.numeric(parse_factor(dataframe$LotShape, unique(dataframe$LotShape)))
  
   #LandContour
   dataframe$LandContour<-as.numeric(parse_factor(dataframe$LandContour, unique(dataframe$LandContour)))
@@ -39,7 +39,7 @@ pre_process<function(dataframe){
   dataframe$LotConfig<-as.numeric(parse_factor(dataframe$LotConfig, unique(dataframe$LotConfig)))
 
   #LandSlope
-  dataframe$LandSlope<-as.numeric(parse_factor(dataframe$LandSlope, unique(dataframe$LamdSlope)))
+  dataframe$LandSlope<-as.numeric(parse_factor(dataframe$LandSlope, unique(dataframe$LandSlope)))
 
   #Classifying the neighborhoods by low medium and high and creating new column (Doesn't this artificially create an interaction w/price?
   #nbhdprice <- summarize(group_by(dataframe, Neighborhood), mean(SalePrice, na.rm=T)) 
@@ -86,7 +86,7 @@ pre_process<function(dataframe){
   
   #MasVnrArea_rescale putting zeros into NA's
   dataframe$MasVnrArea<-ifelse(is.na(dataframe$MasVnrArea)==TRUE, 0, dataframe$MasVnrArea)
-  dataframe$MasVnrArea<-scale((dataframe$MasVnrArea, center=TRUE, scale=TRUE)
+  dataframe$MasVnrArea<-scale(dataframe$MasVnrArea, center=TRUE, scale=TRUE)
   
   #ExterQual
   dataframe$ExterQual<-as.numeric(parse_factor(dataframe$ExterQual, unique(dataframe$ExterQual)))
@@ -120,7 +120,7 @@ pre_process<function(dataframe){
   
   #Finished basement SF, unfinished and Total are all the rehashes of the same information.  I'm creating a new column that is finished ratio which is 
   #SF1+SF2/Total rescaled of course
-  dataframe$FinishedRatio<-(dataframe$BsmtFinSF1+dataframes$BsmtFinSF2)/dataframe$TotalBsmtSF
+  dataframe$FinishedRatio<-(dataframe$BsmtFinSF1+dataframe$BsmtFinSF2)/dataframe$TotalBsmtSF
   dataframe$FinishedRatio<-scale(dataframe$FinishedRatio, center=TRUE, scale=TRUE)
   
   #Killing finished SF 1 & 2, BsmtUnfSF, and TotalBsmt
@@ -136,11 +136,11 @@ pre_process<function(dataframe){
   dataframe$Electrical<-as.numeric(parse_factor(dataframe$Electrical, unique(dataframe$Electrical)))
   
   #1stFlrSF, 2nd FlrSF, LowQualFinSF and GrLivArea are all the same information.  Going to change column information into ratio then scale
-  dataframe$1stFlrSF<-dataframe$1stFlrSF/dataframe$GrLivArea
-  dataframe$2ndFlrSF<-dataframe$2ndFlrSF/dataframe$GrLivArea
+  dataframe$'1stFlrSF'<-dataframe$'1stFlrSF'/dataframe$GrLivArea
+  dataframe$'2ndFlrSF'<-dataframe$'2ndFlrSF'/dataframe$GrLivArea
   dataframe$LowQualFinSF<-dataframe$LowQualFinSF/dataframe$GrLivArea
-  dataframe$1stFlrSF<-scale(dataframe$1stFlrSF, center=TRUE, scale=TRUE)
-  dataframe$2ndFlrSF<-scale(dataframe$2ndFlrSF, center=TRUE, scale=TRUE)
+  dataframe$'1stFlrSF'<-scale(dataframe$'1stFlrSF', center=TRUE, scale=TRUE)
+  dataframe$'2ndFlrSF'<-scale(dataframe$'2ndFlrSF', center=TRUE, scale=TRUE)
   dataframe$LowQualFinSF<-scale(dataframe$LowQualFinSF, center=TRUE, scale=TRUE)
   dataframe$GrLivArea<-scale(dataframe$GrLivArea, center=TRUE, scale=TRUE)
   
@@ -200,7 +200,7 @@ pre_process<function(dataframe){
   dataframe$EnclosedPorch<-scale(dataframe$EnclosedPorch, center=TRUE, scale=TRUE)
   
   #3SsnPorch
-  dataframe$3SsPorch<-scale(dataframe$3SsPorch, center=TRUE, scale=TRUE)
+  dataframe$'3SsnPorch'<-scale(dataframe$'3SsnPorch', center=TRUE, scale=TRUE)
   
   #ScreenPorch
   dataframe$ScreenPorch<-scale(dataframe$ScreenPorch, center=TRUE, scale=TRUE)
@@ -228,32 +228,6 @@ pre_process<function(dataframe){
   dataframe$SaleCondition<-as.numeric(parse_factor(dataframe$SaleCondition, unique(dataframe$SaleCondition)))
   
   #SalesPrice Dependent Variable not rescaling
-  
-  
-  
-  
+  return(dataframe)
 
-  
-  
-
-
-  
-  
-  
-  
-  
-  
-  
-
-
-  
-  
-  
-  
-
-  
-
-
-
-
-}
+  }
