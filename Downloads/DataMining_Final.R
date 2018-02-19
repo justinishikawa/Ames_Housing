@@ -127,10 +127,123 @@ pre_process<function(dataframe){
   dataframe$BsmtFinSF1<-NULL; dataframe$BsmtFinSF2<-NULL; dataframe$BsmtFinSF2<-NULL; dataframe$BsmtUnfSF<-NULL; dataframe$TotalBsmtSF<-NULL
   
   #Heating
+  dataframe$Heating<-as.numeric(parse_factor(dataframe$Heating, unique(dataframe$Heating)))
+  
+  #Central Air
+  dataframe$CentralAir<-as.numeric(parse_factor(dataframe$CentralAir, unique(dataframe$CentralAir)))
+  
+  #Electrical
+  dataframe$Electrical<-as.numeric(parse_factor(dataframe$Electrical, unique(dataframe$Electrical)))
+  
+  #1stFlrSF, 2nd FlrSF, LowQualFinSF and GrLivArea are all the same information.  Going to change column information into ratio then scale
+  dataframe$1stFlrSF<-dataframe$1stFlrSF/dataframe$GrLivArea
+  dataframe$2ndFlrSF<-dataframe$2ndFlrSF/dataframe$GrLivArea
+  dataframe$LowQualFinSF<-dataframe$LowQualFinSF/dataframe$GrLivArea
+  dataframe$1stFlrSF<-scale(dataframe$1stFlrSF, center=TRUE, scale=TRUE)
+  dataframe$2ndFlrSF<-scale(dataframe$2ndFlrSF, center=TRUE, scale=TRUE)
+  dataframe$LowQualFinSF<-scale(dataframe$LowQualFinSF, center=TRUE, scale=TRUE)
+  dataframe$GrLivArea<-scale(dataframe$GrLivArea, center=TRUE, scale=TRUE)
+  
+  #BsmtFullBath
+  dataframe$BsmtFullBath<-as.numeric(parse_factor(dataframe$BsmtFullBath, unique(dataframe$BsmtFullBath)))
+  
+  #BsmtHalfBath
+  dataframe$BsmtHalfBath<-as.numeric(parse_factor(dataframe$BsmtHalfBath, unique(dataframe$BsmtHalfBath)))
+  
+  #KitchenAbvGr
+  dataframe$KitchenAbvGr<-as.numeric(parse_factor(dataframe$KitchenAbvGr, unique(dataframe$KitchenAbvGr)))
+  
+  #KitchenQual
+  dataframe$KitchenQual<-as.numeric(parse_factor(dataframe$KitchenQual, unique(dataframe$KitchenQual)))
+  
+  #TotRmsAbvGrd
+  dataframe$TotRmsAbvGrd<-as.numeric(parse_factor(dataframe$TotRmsAbvGrd, unique(dataframe$TotRmsAbvGrd)))
+  
+  #Functional
+  dataframe$Functional<-as.numeric(parse_factor(dataframe$Functional, unique(dataframe$Functional)))
+  
+  #Fireplaces
+  dataframe$Fireplaces<-as.numeric(parse_factor(dataframe$Fireplaces, unique(dataframe$Fireplaces)))
+  
+  #FireplaceQu
+  dataframe$FireplaceQu<-as.numeric(parse_factor(dataframe$FireplaceQu, unique(dataframe$FireplaceQu)))
+  
+  #GarageType
+  dataframe$GarageType<-as.numeric(parse_factor(dataframe$GarageType, unique(dataframe$GarageType)))
+  
+  #Garage Year Already category
+  
+  #GarageFinish
+  dataframe$GarageFinish<-as.numeric(parse_factor(dataframe$GarageFinish, unique(dataframe$GarageFinish)))
+  
+  #GarageCars Already category
+  
+  #GarageArea rescale
+  dataframe$GarageArea<-scale(dataframe$GarageArea, center=TRUE, scale=TRUE)
+  
+  #GarageQual
+  dataframe$GarageQual<-as.numeric(parse_factor(dataframe$GarageQual, unique(dataframe$GarageQual)))
+  
+  #GarageCond
+  dataframe$GarageCond<-as.numeric(parse_factor(dataframe$GarageCond, unique(dataframe$GarageCond)))
+  
+  #PavedDrive
+  dataframe$PavedDrive<-as.numeric(parse_factor(dataframe$PavedDrive, unique(dataframe$PavedDrive)))
+  
+  #WoodDeckSF
+  dataframe$WoodDeckSF<-scale(dataframe$WoodDeckSF, center=TRUE, scale=TRUE)
+  
+  #OpenPorchSF
+  dataframe$OpenPorchSF<-scale(dataframe$OpenPorchSF, center=TRUE, scale=TRUE)
+  
+  #EnclosedPorch
+  dataframe$EnclosedPorch<-scale(dataframe$EnclosedPorch, center=TRUE, scale=TRUE)
+  
+  #3SsnPorch
+  dataframe$3SsPorch<-scale(dataframe$3SsPorch, center=TRUE, scale=TRUE)
+  
+  #ScreenPorch
+  dataframe$ScreenPorch<-scale(dataframe$ScreenPorch, center=TRUE, scale=TRUE)
+  
+  #PoolArea
+  dataframe$PoolArea<-scale(dataframe$PoolArea, center=TRUE, scale=TRUE)
+  
+  #PoolQC  
+  dataframe$PoolQC<-as.numeric(parse_factor(dataframe$PoolQC, unique(dataframe$PoolQC)))
+  
+  #Fence
+  dataframe$Fence<-as.numeric(parse_factor(dataframe$Fence, unique(dataframe$Fence)))
+  
+  #MiscFeature & Misc Value Remove until we know what do with it 
+  #dataframe$MiscFeature<-as.numeric(parse_factor(dataframe$MiscFeature, unique(dataframe$MiscFeature)))
+  #dataframe$MiscVal<-scale(dataframe$MiscVal, center=TRUE, scale=TRUE)
+  dataframe$MiscFeatures<-NULL; dataframe$MiscVal<-NULL
+  
+  #Month and Year Sold -Leaving for now
+  
+  #SaleType
+  dataframe$SaleType<-as.numeric(parse_factor(dataframe$SaleType, unique(dataframe$SaleType)))
+  
+  #SaleCondition
+  dataframe$SaleCondition<-as.numeric(parse_factor(dataframe$SaleCondition, unique(dataframe$SaleCondition)))
+  
+  #SalesPrice Dependent Variable not rescaling
+  
+  
+  
+  
+
   
   
 
 
+  
+  
+  
+  
+  
+  
+  
 
 
   
