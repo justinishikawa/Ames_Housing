@@ -1,8 +1,5 @@
 suppressMessages(library(tidyverse))
 suppressMessages(library(forcats))
-
-#opening file
-re<-read_csv('kaggle_data.csv',col_names = TRUE)
 pre_process<-function(dataframe){
   #Removing id variable as it doesnt have any information
   dataframe<-dataframe[,2:81]
