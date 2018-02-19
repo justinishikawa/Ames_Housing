@@ -38,6 +38,9 @@ pre_process<-function(dataframe){
   #LandSlope
   dataframe$LandSlope<-as.numeric(parse_factor(dataframe$LandSlope, unique(dataframe$LandSlope)))
 
+  #Neighborhood
+  dataframe$Neighborhood<-as.numeric(parse_factor(dataframe$Neighborhood, unique(dataframe$Neighborhood)))
+  
   #Classifying the neighborhoods by low medium and high and creating new column (Doesn't this artificially create an interaction w/price?
   #nbhdprice <- summarize(group_by(dataframe, Neighborhood), mean(SalePrice, na.rm=T)) 
   #nbhdprice[order(nbhdprice$`mean(SalePrice, na.rm = T)`),]
@@ -126,6 +129,9 @@ pre_process<-function(dataframe){
   #Heating
   dataframe$Heating<-as.numeric(parse_factor(dataframe$Heating, unique(dataframe$Heating)))
   
+  #HeatingQC
+  dataframe$HeatingQC<-as.numeric(parse_factor(dataframe$HeatingQC, unique(dataframe$HeatingQC)))
+  
   #Central Air
   dataframe$CentralAir<-as.numeric(parse_factor(dataframe$CentralAir, unique(dataframe$CentralAir)))
   
@@ -147,7 +153,11 @@ pre_process<-function(dataframe){
   #BsmtHalfBath
   dataframe$BsmtHalfBath<-as.numeric(parse_factor(dataframe$BsmtHalfBath, unique(dataframe$BsmtHalfBath)))
   
-  #KitchenAbvGr
+  #HalfBath
+  dataframe$HalfBath<-dataframe$HalfBath+1
+  
+ 
+   #KitchenAbvGr
   dataframe$KitchenAbvGr<-as.numeric(parse_factor(dataframe$KitchenAbvGr, unique(dataframe$KitchenAbvGr)))
   
   #KitchenQual
@@ -214,7 +224,8 @@ pre_process<-function(dataframe){
   #MiscFeature & Misc Value Remove until we know what do with it 
   #dataframe$MiscFeature<-as.numeric(parse_factor(dataframe$MiscFeature, unique(dataframe$MiscFeature)))
   #dataframe$MiscVal<-scale(dataframe$MiscVal, center=TRUE, scale=TRUE)
-  dataframe$MiscFeatures<-NULL; dataframe$MiscVal<-NULL
+  dataframe$MiscFeature<-NULL; 
+  dataframe$MiscVal<-NULL
   
   #Month and Year Sold -Leaving for now
   
