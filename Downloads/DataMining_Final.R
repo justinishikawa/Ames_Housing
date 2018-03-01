@@ -1,5 +1,9 @@
-suppressMessages(library(tidyverse))
-suppressMessages(library(forcats))
+library(tidyverse)
+library(forcats)
+
+ames<-read_csv('kaggle_data.csv')
+
+
 pre_process<-function(dataframe){
   #Removing id variable as it doesnt have any information
   dataframe<-dataframe[,2:81]
@@ -238,4 +242,17 @@ pre_process<-function(dataframe){
   #SalesPrice Dependent Variable not rescaling
   return(dataframe)
 
-  }
+}
+
+sep_data_type<-function(dataframe){
+  numeric_names <- c("LotFrontage", "LotArea", "MasVnrArea", "1stFlrSF", "2ndFlrSF", "LowQualFinSF", "GrLivArea", "GarageArea", "WoodDeckSF", "OpenPorchSF", "EnclosedPorch", "3SsnPorch", "ScreenPorch", "PoolArea", "FinishedRatio")
+  
+  num_names<-dataframe[,numeric_names]
+  num_names$FinishedRatio<-ifelse(is.nan(num_names$FinishedRatio), 0,num_names$FinishedRatio)
+  
+  cat_names<-dataframe[,-which(names(dataframe) %in% numeric_names)]
+  
+  final_data<-cbind(cat_names,num_names)
+  return(final_data)
+  
+}
