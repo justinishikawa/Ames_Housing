@@ -251,8 +251,11 @@ sep_data_type<-function(dataframe){
   num_names$FinishedRatio<-ifelse(is.nan(num_names$FinishedRatio), 0,num_names$FinishedRatio)
   
   cat_names<-dataframe[,-which(names(dataframe) %in% numeric_names)]
-  
+  #turn into factors
+  cat_names<-lapply(cat_names, factor)
   final_data<-cbind(cat_names,num_names)
   return(final_data)
   
 }
+
+chosen_vars<- c("OverallQual"  ,"YearBuilt"  ,  "GarageYrBlt" , "Neighborhood", "GarageType","GrLivArea"    ,"BsmtQual"   ,  "MSSubClass"  , "YearRemodAdd", "Fireplaces")
