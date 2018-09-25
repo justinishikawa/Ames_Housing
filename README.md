@@ -1,6 +1,8 @@
-#Ames Housing Dataset Analysis
+Ames Housing Dataset Analysis
 
-This project looked at the Ames Dataset from Ames, Iowa.  Full analysis of this project was completed as a group for the MScA program at The University of Chicago.  
+This project looked at the Ames Dataset from Ames, Iowa available from Kaggle at https://www.kaggle.com/c/ames-housing-data/data 
+
+Full analysis of this project was completed as a group for the MScA program at The University of Chicago.  My contribution is being presented here.  
 
 The first piece I focused on was the cleansing of the dataset: removing or imputing missing values, creating meta features to reduce dimensionality and colliniarity, creating dummy variables (or one hot encoding) and rescaling the data for analysis.
 
